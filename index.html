@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Handwriting Style Classification</title>
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+<script>
+function previewImage(event) {
+    const image = document.getElementById("preview");
+    image.src = URL.createObjectURL(event.target.files[0]);
+}
+</script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Handwriting Style Classification</h2>
+
+<p>Capture or upload handwriting</p>
+
+<form action="/upload" method="post" enctype="multipart/form-data">
+
+<input type="file" name="image" accept="image/*" capture="camera" onchange="previewImage(event)">
+
+<br><br>
+
+<img id="preview" width="200"/>
+
+<br><br>
+
+<button type="submit">Upload</button>
+
+</form>
+
+</div>
+
+</body>
+</html>
