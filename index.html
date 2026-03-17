@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Handwriting Style Classification</title>
+<title>Handwriting AI</title>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
@@ -9,6 +9,7 @@
 function previewImage(event) {
     const image = document.getElementById("preview");
     image.src = URL.createObjectURL(event.target.files[0]);
+    image.style.display = "block";
 }
 </script>
 
@@ -18,21 +19,21 @@ function previewImage(event) {
 
 <div class="container">
 
-<h2>Handwriting Style Classification</h2>
+<h1>✍ Handwriting Style Classifier</h1>
 
-<p>Capture or upload handwriting</p>
+<p>Capture or upload handwriting to detect style</p>
 
 <form action="/upload" method="post" enctype="multipart/form-data">
 
-<input type="file" name="image" accept="image/*" capture="camera" onchange="previewImage(event)">
+<input type="file" name="image" accept="image/*" capture="environment" onchange="previewImage(event)">
 
 <br><br>
 
-<img id="preview" width="200"/>
+<img id="preview" style="display:none;" width="200"/>
 
 <br><br>
 
-<button type="submit">Upload</button>
+<button type="submit">Analyze Handwriting</button>
 
 </form>
 
@@ -40,3 +41,6 @@ function previewImage(event) {
 
 </body>
 </html>
+{% if result %}
+<h3>🧠 Prediction: {{ result }}</h3>
+{% endif %}
